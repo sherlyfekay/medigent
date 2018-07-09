@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/cvdaftarHis"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivFotoAgen"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNamaAgen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Lina Meritha"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvJkAgen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perempuan"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/tvAlamatAgen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jl. Kutisari Selatan No. 12, Tenggilis"/>
+
+            <RatingBar
+                android:id="@+id/rbAgen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/customRatingBar"
+                android:numStars="5"
+                android:stepSize=".5" />
+        </LinearLayout>
+
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:src="@drawable/ic_terima"-->
+            <!--android:layout_marginRight="3dp"-->
+            <!--android:layout_gravity="center"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:src="@drawable/ic_tolak"-->
+            <!--android:layout_gravity="center"/>-->
+
+        <Button
+            android:id="@+id/btnPesan"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:text="Pesan"
+            android:padding="0dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

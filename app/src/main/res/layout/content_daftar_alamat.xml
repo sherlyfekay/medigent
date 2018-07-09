@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".fitur.alamat.DaftarAlamatActivity"
+    tools:showIn="@layout/activity_daftar_alamat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@mipmap/bg_history"
+        android:padding="15dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvDaftarAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

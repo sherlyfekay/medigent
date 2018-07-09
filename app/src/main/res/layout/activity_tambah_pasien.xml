@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_umum"
+    tools:context=".fitur.pasien.TambahPasienActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:cardCornerRadius="10dp"
+            app:layout_anchor="@id/cvInfoPasien"
+            app:layout_anchorGravity="top|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Pasien"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:cardCornerRadius="10dp"
+            app:layout_anchor="@id/cvHisMedis"
+            app:layout_anchorGravity="top|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Histori Medis"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInfoPasien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <EditText
+                        android:id="@+id/etNamaPasien"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Nama Pasien"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgJk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <RadioButton
+                            android:id="@+id/rbLk"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Laki-laki"
+                            android:buttonTint="@color/colorPrimary"
+                            android:textSize="16sp"/>
+
+                        <RadioButton
+                            android:id="@+id/rbPr"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Perempuan"
+                            android:buttonTint="@color/colorPrimary"
+                            android:textSize="16sp"/>
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/etTglLahir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tanggal Lahir"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/etTB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:hint="Tinggi Badan (cm)"
+                            android:textSize="16sp"
+                            android:textColorHint="@color/colorPrimary"/>
+
+                        <EditText
+                            android:id="@+id/etBB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:hint="Berat Badan (kg)"
+                            android:textSize="16sp"
+                            android:textColorHint="@color/colorPrimary"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etHubungan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Hubungan"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvHisMedis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <EditText
+                        android:id="@+id/etAlatMedis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Alat Bantu Medis Yang Dibutuhkan"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                    <EditText
+                        android:id="@+id/etDiagnosa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Diagnosa Penyakit"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                    <EditText
+                        android:id="@+id/etKondisiLengkap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kondisi Lengkap"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="SIMPAN"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</ScrollView>

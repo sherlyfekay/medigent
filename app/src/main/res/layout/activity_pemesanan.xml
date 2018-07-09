@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_umum"
+    tools:context=".fitur.pemesanan.PemesananActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:cardCornerRadius="10dp"
+            app:layout_anchor="@id/cvPasien"
+            app:layout_anchorGravity="top|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pasien"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:cardCornerRadius="10dp"
+            app:layout_anchor="@id/cvPenyediaJasa"
+            app:layout_anchorGravity="top|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Penyedia Jasa"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvPasien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Nama Pasien"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp">
+
+                        <Spinner
+                            android:id="@+id/spNamaPasien"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                        </Spinner>
+
+                        <ImageView
+                            android:id="@+id/ivTbhPasien"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_add_pink"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorAccent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Alamat"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp">
+
+                        <Spinner
+                            android:id="@+id/spAlamatPasien"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                        </Spinner>
+
+                        <ImageView
+                            android:id="@+id/ivTbhAlamat"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_add_pink"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvPenyediaJasa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Jenis Kelamin"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp">
+
+                        <RadioButton
+                            android:id="@+id/rbLk"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Laki-laki"
+                            android:buttonTint="@color/colorPrimary"
+                            android:textSize="16sp"/>
+
+                        <RadioButton
+                            android:id="@+id/rbPr"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Perempuan"
+                            android:buttonTint="@color/colorPrimary"
+                            android:textSize="16sp"/>
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorAccent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Jenis Layanan"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                    <Spinner
+                        android:id="@+id/spJnsLayanan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp">
+                    </Spinner>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorAccent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Shift"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp">
+
+                        <EditText
+                            android:id="@+id/etJmlShift"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:hint="Jumlah Shift"
+                            android:textSize="16sp"
+                            android:textColorHint="@color/colorPrimary"/>
+
+                        <EditText
+                            android:id="@+id/etTglMulai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Tanggal Mulai"
+                            android:textSize="16sp"
+                            android:textColorHint="@color/colorPrimary"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="CARI"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</ScrollView>
