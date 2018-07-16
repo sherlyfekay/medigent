@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg_umum"
-    tools:context=".fitur.pasien.TambahPasienActivity">
+    tools:context=".fitur.pasien.EditPasienActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -68,15 +68,31 @@
                     android:orientation="vertical"
                     android:padding="7dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Nama Lengkap"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
+
                     <EditText
                         android:id="@+id/etNamaPasien"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:hint="Nama Pasien"
                         android:textSize="16sp"
                         android:textColorHint="@color/gray"
                         android:backgroundTint="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Jenis Kelamin"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
 
                     <RadioGroup
                         android:id="@+id/rgJk"
@@ -105,6 +121,14 @@
 
                     </RadioGroup>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Tanggal Lahir"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
+
                     <EditText
                         android:id="@+id/etTglLahir"
                         android:layout_width="match_parent"
@@ -117,30 +141,102 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/etTB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:inputType="number"
-                            android:hint="Tinggi Badan (cm)"
-                            android:textSize="16sp"
-                            android:textColorHint="@color/gray"
-                            android:backgroundTint="@color/colorPrimary"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
 
-                        <EditText
-                            android:id="@+id/etBB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:inputType="number"
-                            android:hint="Berat Badan (kg)"
-                            android:textSize="16sp"
-                            android:textColorHint="@color/gray"
-                            android:backgroundTint="@color/colorPrimary"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="7dp"
+                                android:text="Tinggi Badan"
+                                android:textSize="14sp"
+                                android:layout_marginBottom="3dp"
+                                android:textColor="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:layout_marginRight="25dp"
+                                android:gravity="center"
+                                />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="7dp"
+                                android:text="Berat Badan"
+                                android:textSize="14sp"
+                                android:textColor="@color/colorPrimary"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/etTB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:hint="Tinggi Badan (cm)"
+                                android:textSize="16sp"
+                                android:textColorHint="@color/gray"
+                                android:backgroundTint="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="cm"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center"
+                                />
+
+                            <EditText
+                                android:id="@+id/etBB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:hint="Berat Badan (kg)"
+                                android:textSize="16sp"
+                                android:textColorHint="@color/gray"
+                                android:backgroundTint="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="kg"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Hubungan"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etHubungan"
@@ -170,15 +266,30 @@
                     android:orientation="vertical"
                     android:padding="7dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Alat Bantu Medis Yang Dibutuhkan"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
+
                     <EditText
                         android:id="@+id/etAlatMedis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:hint="Alat Bantu Medis Yang Dibutuhkan"
                         android:textSize="16sp"
                         android:textColorHint="@color/gray"
                         android:backgroundTint="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Diagnosa Penyakit"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etDiagnosa"
@@ -188,6 +299,20 @@
                         android:textSize="16sp"
                         android:textColorHint="@color/gray"
                         android:backgroundTint="@color/colorPrimary"/>
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginTop="7dp"-->
+                        <!--android:background="@color/colorAccent"/>-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="Kondisi Lengkap"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etKondisiLengkap"
@@ -212,4 +337,5 @@
 
         </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>
+
 </ScrollView>

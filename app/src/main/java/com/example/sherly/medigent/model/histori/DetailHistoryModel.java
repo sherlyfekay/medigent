@@ -1,8 +1,9 @@
 package com.example.sherly.medigent.model.histori;
 
 public class DetailHistoryModel {
-    Integer jml_shift;
-    String _id, created_at, jenis, nama_pasien, diagnosa, nama_agent, role;
+    Integer jml_shift, status;
+    String _id, created_at, jenis, nama_pasien, diagnosa, nama_agent, role, alamat_lengkap;
+    Double lat, lng;
 
     public Integer getJml_shift() {
         return jml_shift;
@@ -34,5 +35,21 @@ public class DetailHistoryModel {
 
     public String getRole() {
         return role;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public String getAlamat_lengkap() {
+        return alamat_lengkap;
     }
 }

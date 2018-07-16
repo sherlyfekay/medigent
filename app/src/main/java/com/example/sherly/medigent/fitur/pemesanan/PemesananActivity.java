@@ -198,6 +198,7 @@ public class PemesananActivity extends AppCompatActivity {
                                     Toast.makeText(PemesananActivity.this, "Data pemesanan berhasil disimpan", Toast.LENGTH_SHORT).show();
                                     //finish();
                                     Intent intent = new Intent(PemesananActivity.this, ResultMapsActivity.class);
+                                    intent.putExtra("id_order", response.body().getId_order());
                                     startActivity(intent);
                                 }
                                 else {

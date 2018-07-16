@@ -8,4 +8,7 @@
     <color name="white">#fff</color>
     <color name="colorPink">#F48FB1</color>
     <color name="gray">#9E9E9E</color>
+    <color name="hijau">#00E676</color>
+    <color name="kuning">#FFEB3B</color>
+    <color name="merah">#F50057</color>
 </resources>

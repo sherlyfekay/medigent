@@ -32,13 +32,30 @@
                 android:src="@drawable/ic_settings"
                 android:layout_alignParentRight="true"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgProfile"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher_round"/>
+                android:id="@+id/coord">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/profile"
+                    />
+
+                <ImageView
+                    android:id="@+id/ivEditFoto"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/pencil"
+                    app:layout_anchor="@id/imgProfile"
+                    app:layout_anchorGravity="bottom|right"/>
+
+            </android.support.design.widget.CoordinatorLayout>
 
             <TextView
                 android:id="@+id/tvName"
@@ -47,7 +64,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:layout_below="@id/imgProfile"
+                android:layout_below="@id/coord"
                 android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>

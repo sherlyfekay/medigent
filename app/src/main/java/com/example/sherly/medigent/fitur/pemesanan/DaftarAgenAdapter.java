@@ -1,16 +1,20 @@
 package com.example.sherly.medigent.fitur.pemesanan;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.sherly.medigent.R;
+import com.example.sherly.medigent.fitur.home.MainActivity;
 import com.example.sherly.medigent.model.agent.DataAgentModel;
 
 import java.util.ArrayList;
@@ -39,8 +43,17 @@ public class DaftarAgenAdapter extends RecyclerView.Adapter<DaftarAgenAdapter.It
         holder.tvNamaAgen.setText(dataAgen.get(i).getNama_lengkap());
         holder.tvJkAgen.setText(dataAgen.get(i).getJk());
         holder.tvAlamatAgen.setText(dataAgen.get(i).getAlamat_lengkap());
-        holder.rbAgen.setRating(5);
+        holder.rbAgen.setRating(dataAgen.get(i).getRating());
         Glide.with(activity).load(dataAgen.get(i).getFoto()).into(holder.ivFotoAgen);
+
+        holder.btnPesan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(activity, "Pemesanan berhasil dilakukan", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
+            }
+        });
 
 //        holder.cvDaftarHis.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -62,6 +75,7 @@ public class DaftarAgenAdapter extends RecyclerView.Adapter<DaftarAgenAdapter.It
         protected TextView tvNamaAgen, tvJkAgen, tvAlamatAgen;
         protected ImageView ivFotoAgen;
         protected RatingBar rbAgen;
+        protected Button btnPesan;
         //protected CardView cvDaftarHis;
 
         public ItemRowHolder(View view) {
@@ -71,6 +85,7 @@ public class DaftarAgenAdapter extends RecyclerView.Adapter<DaftarAgenAdapter.It
             this.tvJkAgen = (TextView) view.findViewById(R.id.tvJkAgen);
             this.tvAlamatAgen = (TextView)view.findViewById(R.id.tvAlamatAgen);
             this.rbAgen = (RatingBar) view.findViewById(R.id.rbAgen);
+            this.btnPesan = (Button) view.findViewById(R.id.btnPesan);
             //this.cvDaftarHis = (CardView) view.findViewById(R.id.cvDaftarHis);
         }
     }

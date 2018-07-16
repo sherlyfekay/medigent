@@ -2,6 +2,7 @@ package com.example.sherly.medigent.fitur.pemesanan;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -32,8 +33,10 @@ import android.widget.Toast;
 
 import com.example.sherly.medigent.R;
 import com.example.sherly.medigent.model.agent.AgentModel;
+import com.example.sherly.medigent.model.agent.DataAgentModel;
 import com.example.sherly.medigent.model.alamat.AddressModel;
 import com.example.sherly.medigent.model.alamat.PostAddressModel;
+import com.example.sherly.medigent.model.histori.DetailHistoryModel;
 import com.example.sherly.medigent.service.ApiService;
 import com.example.sherly.medigent.service.PlaceAutocompleteAdapter;
 import com.example.sherly.medigent.service.PlaceInfo;
@@ -51,6 +54,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -85,7 +89,7 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
     private GoogleApiClient mGoogleApiClient;
     private PlaceInfo mPlace;
     private Marker mMarker;
-    private String judul, alamat, id_user, token;
+    private String judul, alamat, id_user, token, alamat_lengkap;
     private Double lat, lng;
 
     LinearLayout layoutBottomSheet;
@@ -94,6 +98,9 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
     ImageView ivPanah1, ivPanah2;
     DaftarAgenAdapter agenAdapter;
     RecyclerView rvDaftarAgen;
+    ArrayList<DataAgentModel> agentModels;
+    String id_order;
+    Double agentLat, agentLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +116,9 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
         id_user = pref.getString("id_user", "null");
         token = pref.getString("token", "null");
 
+        Intent intent = getIntent();
+        id_order = intent.getStringExtra("id_order");
+
         layoutBottomSheet = (LinearLayout) findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         tvBottomSheet = (TextView) findViewById(R.id.tvBottomSheet);
@@ -118,7 +128,26 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
         ivPanah1.setBackgroundResource(R.drawable.ic_up);
         ivPanah2.setBackgroundResource(R.drawable.ic_up);
 
-        Toast.makeText(ResultMapsActivity.this, "Bisa", Toast.LENGTH_LONG).show();
+        //Toast.makeText(ResultMapsActivity.this, ""+id_order+", "+token, Toast.LENGTH_LONG).show();
+        ApiService.service_get.getHistoryByOO2("Bearer "+token, id_order).enqueue(new Callback<DetailHistoryModel>() {
+            @Override
+            public void onResponse(Call<DetailHistoryModel> call, Response<DetailHistoryModel> response) {
+                if(response.isSuccessful()){
+                    agentLat = response.body().getLat();
+                    agentLng = response.body().getLng();
+                    alamat_lengkap = response.body().getAlamat_lengkap();
+                    //Toast.makeText(ResultMapsActivity.this, ""+agentLat+", "+agentLng, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ResultMapsActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DetailHistoryModel> call, Throwable t) {
+                Toast.makeText(ResultMapsActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ApiService.service_get.getAgents("Bearer "+token).enqueue(new Callback<AgentModel>() {
             @Override
@@ -131,6 +160,9 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
                     //rvDaftarHistori.setNestedScrollingEnabled(false);
                     rvDaftarAgen.setAdapter(agenAdapter);
                     agenAdapter.notifyDataSetChanged();
+
+                    agentModels = response.body().getAgents();
+                    createMarker(agentModels, response.body().getCount());
                 }
                 else {
                     Toast.makeText(ResultMapsActivity.this, "Terjadi Kesalahan", Toast.LENGTH_LONG).show();
@@ -180,6 +212,60 @@ public class ResultMapsActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void createMarker(ArrayList<DataAgentModel> dataAgent, int count) {
+        mMap.clear();
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(agentLat, agentLng))
+                .title("Lokasi saya")
+                .snippet(alamat_lengkap)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+        ArrayList<LatLng> latLngs = new ArrayList<>();
+        Double jarak;
+
+        Double dekat[] = new Double[count];
+
+        for(int i=0; i<count; i++) {
+
+            jarak = distance(agentLat, agentLng, dataAgent.get(i).getLat(), dataAgent.get(i).getLng());
+            dekat[i] = jarak;
+
+            mMap.addMarker(new MarkerOptions().position(new LatLng(dataAgent.get(i).getLat(), dataAgent.get(i).getLng())).title(dataAgent.get(i).getNama_lengkap()).snippet(dataAgent.get(i).getAlamat_lengkap()));
+        }
+
+        for(int i=0; i<dekat.length; i++) {
+            for(int j=0; j<dekat.length; j++) {
+                if(dekat[i] < dekat[j]) {
+                    Double tampung = dekat[i];
+                    dekat[i] = dekat[j];
+                    dekat[j] = tampung;
+
+                }
+            }
+        }
+
+        for(int i=0; i<dekat.length; i++) {
+            Toast.makeText(ResultMapsActivity.this, ""+dekat[i], Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static double distance(double lat1, double lng1, double lat2, double lng2) {
+        double earthRadius = 6371; //meters
+        //double earthRadius = 3958.75;
+        double dLat = Math.toRadians(lat2-lat1);
+        double dLng = Math.toRadians(lng2-lng1);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                        Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        //double dist = earthRadius * c *1000;
+        //dist = Math.pow(dist,2);
+        double dist = earthRadius * c;
+        //double meterConversion = 1609;
+        return dist ;
     }
 
     private void init(){

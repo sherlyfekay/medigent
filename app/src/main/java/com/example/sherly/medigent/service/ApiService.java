@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.example.sherly.medigent.fitur.histori.HistoryActivity;
 import com.example.sherly.medigent.model.DeleteModel;
+import com.example.sherly.medigent.model.EditModel;
 import com.example.sherly.medigent.model.agent.AgentModel;
 import com.example.sherly.medigent.model.alamat.AddressModel;
 import com.example.sherly.medigent.model.alamat.GetAddressModel;
@@ -25,9 +26,13 @@ import com.example.sherly.medigent.model.penawaran.PostOfferModel;
 import com.example.sherly.medigent.model.register.PostRegisterModel;
 import com.example.sherly.medigent.model.register.RegisterModel;
 import com.example.sherly.medigent.model.shift.ShiftModel;
+import com.example.sherly.medigent.model.user.UpdateFotoModel;
 import com.example.sherly.medigent.model.user.UpdateUserModel;
 import com.example.sherly.medigent.model.user.UserModel;
 
+import java.util.ArrayList;
+
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -39,8 +44,10 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -83,14 +90,23 @@ public class ApiService {
         @GET("/patients/category/{userId}")
         Call<GetPatientModel> getPatientByUser(@Header("Authorization") String token, @Path("userId") String userId);
 
+        @GET("/patients/{patientId}")
+        Call<PostPatientModel> getDetailPatient(@Header("Authorization") String token, @Path("patientId") String patientId);
+
         @GET("/addresses/category/{userId}")
         Call<GetAddressModel> getAddressByUser(@Header("Authorization") String token, @Path("userId") String userId);
 
-        @GET("/ordersoffers/category/{userId}")
-        Call<HistoryModel> getHistoryByUser(@Header("Authorization") String token, @Path("userId") String userId);
+        @GET("/ordersoffers/category23/{userId}")
+        Call<HistoryModel> getHistoryByUser23(@Header("Authorization") String token, @Path("userId") String userId);
+
+        @GET("/ordersoffers/category14/{userId}")
+        Call<HistoryModel> getHistoryByUser14(@Header("Authorization") String token, @Path("userId") String userId);
 
         @GET("/ordersoffers/{ooId}")
         Call<DetailHistoryModel> getHistoryByOO (@Header("Authorization") String token, @Path("ooId") String ooId);
+
+        @GET("/ordersoffers/get/{ooId}")
+        Call<DetailHistoryModel> getHistoryByOO2 (@Header("Authorization") String token, @Path("ooId") String ooId);
 
         @GET("/shifts/category/{ooId}")
         Call<ShiftModel> getShiftByOO (@Header("Authorization") String token, @Path("ooId") String ooId);
@@ -98,23 +114,6 @@ public class ApiService {
         @GET("/articles")
         Call<ArticleModel> getArticle(@Header("Authorization") String token);
 
-        /*@GET("/poli/api")
-        Call<PoliModel> getPoli();
-
-        @GET("/dokter/api/poli/{id_poli}")
-        Call<DokterModel> getDokterPoli(@Path("id_poli") String id_poli);
-
-        @GET("/dokter/api")
-        Call<DokterModel> getDokter();
-
-        @GET("/dokter/api/{id_dokter}")
-        Call<DokterModel> getDetailDokter(@Path("id_dokter") String id_dokter);
-
-        @GET("/pasien/api/{id_pasien}")
-        Call<PasienModel> getPasien(@Path("id_pasien") String id_pasien);
-
-        @GET("/dokter/api/jadwal/{id_dokter}")
-        Call<JadwalModel> getJadwal(@Path("id_dokter") String id_dokter);*/
     }
 
     public interface PostService {
@@ -127,6 +126,10 @@ public class ApiService {
 
         @POST("/users/signup")
         Call<RegisterModel> postSignup(@Body PostRegisterModel body);
+
+        @Multipart
+        @POST("/users/updatefoto/{userId}")
+        Call<UpdateFotoModel> updateFoto(@Header("Authorization") String token, @Path("userId") String userId, @Part MultipartBody.Part foto);
 
         @POST("/patients")
         Call<PatientModel> postPatient(@Header("Authorization") String token, @Body PostPatientModel body);
@@ -147,10 +150,16 @@ public class ApiService {
 
         @PATCH("/addresses/{addressId}")
         Call<DeleteModel> patchAddress(@Header("Authorization") String token, @Path("addressId") String userId, @Body UpdateUserModel body);
+
+        @PATCH("/patients/{patientId}")
+        Call<DeleteModel> patchPatient(@Header("Authorization") String token, @Path("patientId") String patientId, @Body ArrayList<EditModel> body);
     }
 
     public interface DeleteService {
         @DELETE("/addresses/{addressId}")
         Call<DeleteModel> deleteAddress(@Header("Authorization") String token, @Path("addressId") String addressId);
+
+        @DELETE("/patients/{patientId}")
+        Call<DeleteModel> deletePatient(@Header("Authorization") String token, @Path("patientId") String patientId);
     }
 }
